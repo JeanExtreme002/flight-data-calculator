@@ -49,7 +49,7 @@ public class Calculator {
             Waypoint waypoint = new Waypoint(waypointId, waypointDistance, waypointAltitude, waypointVelocity);
             flight.addWaypoint(waypoint);
 
-            System.out.print("Add new waypoint? (Y/N):  ");
+            System.out.print("Add new waypoint? (Y/N): ");
         } while (Calculator.inputScanner.nextLine().toUpperCase().equals("Y"));
 
         return flight;
