@@ -1,7 +1,9 @@
 import flight.Flight;
 import flight.FlightLeg;
 import flight.Waypoint;
-import java.io.FileNotFoundException;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -15,9 +17,12 @@ public class Calculator {
         System.out.println("\nInsert the route waypoints:\n");
         Flight flight = Calculator.createFlight(averageFuelConsumption);
 
-        try (PrintStream printStream = new PrintStream(args.length == 0 ? "route_data.txt" : args[0])) {
+        File file = new File(args.length == 0 ? "route_data.txt" : args[0]);
+
+        try (PrintStream printStream = new PrintStream(file)) {
             Calculator.writeRouteDataTo(printStream, flight);
-        } catch (FileNotFoundException exception) {
+            Desktop.getDesktop().open(file);
+        } catch (IOException exception) {
             exception.printStackTrace();
             Calculator.inputScanner.nextLine();
         }
